@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 28, 2020 at 12:20 PM
+-- Generation Time: Nov 06, 2020 at 11:41 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orders`
@@ -78,7 +78,7 @@ INSERT INTO `products` (`id`, `product_code`, `product_name`, `product_desc`, `p
 (2, 'GS2', 'GA-110HR-1ADR (G700)', 'Casio G-Shock Analog-Digital Black Dial Mens Watch - GA-400-1BDR (G566) with 2 Years warrenty', 'gs2.jpg', 39, '7800.00'),
 (3, 'GS3', 'GA-100CB-1ADR (G625)', 'Casio G-Shock Analog-Digital Black Dial Mens Watch - GA-400-1BDR (G566) with 2 Years warrenty', 'gs3.jpg', 34, '14500.00'),
 (4, 'GS4', 'GM110-1A (G740)', 'Casio G-Shock Analog-Digital Black Dial Mens Watch - GA-400-1BDR (G566) with 2 Years warrenty', 'gs4.jpg', 50, '11000.00'),
-(5, 'GS5', 'GM115-BA (G150)', 'Casio G-Shock Analog-Digital Black Dial Mens Watch - GA-400-1BDR (G566) with 2 Years warrenty', 'gs5.jpg', 50, '5500.00'),
+(5, 'GS5', 'GM115-BA (G150)', 'Casio G-Shock Analog-Digital Black Dial Mens Watch - GA-400-1BDR (G566) with 2 Years warrenty', 'gs5.jpg', 150, '5500.00'),
 (6, 'GS6', 'GM140-BA (G688)', 'Casio G-Shock Analog-Digital Black Dial Mens Watch - GA-400-1BDR (G566) with 2 Years warrenty', 'gs6.jpg', 50, '8500.00');
 
 -- --------------------------------------------------------
@@ -100,15 +100,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `type` varchar(20) NOT NULL DEFAULT 'user',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `fname`, `lname`, `address`, `city`, `pin`, `email`, `password`, `type`) VALUES
-(1, 'harish', 'kumar', 'karur', 'karur', 639001, 'harish@g.com', 'admin', 'admin'),
-(2, 'benlin', 'a', 'theni', 'theni', 632522, 'benlin@g.com', 'hello', 'user');
+(1, 'harish', 'kumar', 'karur', 'karur', 639001, 'harish@g.com', 'harish', 'admin'),
+(2, 'benlin', 'a', 'theni', 'theni', 632522, 'benlin@g.com', 'hello', 'user'),
+(3, 'Nikil', 'Kumar', 'VIP Nagar', 'Bangalore', 700000, 'nikil@g.com', 'nikil', 'user');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
