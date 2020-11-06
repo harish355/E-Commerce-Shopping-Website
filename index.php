@@ -12,8 +12,60 @@ if(session_id() == '' || !isset($_SESSION)){session_start();}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>G-Shock</title>
     <link rel="stylesheet" href="css/foundation.css" />
+    
     <script src="js/vendor/modernizr.js"></script>
   </head>
+  <style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00B4CC;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #000000;
+}
+
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+  </style>
   <body>
 
     <nav class="top-bar" data-topbar role="navigation">
@@ -23,7 +75,16 @@ if(session_id() == '' || !isset($_SESSION)){session_start();}
         </li>
         <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
       </ul>
-
+ <form method="GET" action="search.php">
+<div class="wrap">
+   <div class="search">
+      <input type="text" class="searchTerm" name="search" placeholder="What series are you looking for?">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
+   </div>
+</div>
+     </form>
       <section class="top-bar-section">
         <ul class="right">
           <li><a href="about.php">About</a></li>
@@ -58,8 +119,10 @@ if(session_id() == '' || !isset($_SESSION)){session_start();}
 
 
 
-<center><h1>Our  Products</h1></cemter>
 
+
+<center><h1>Our  Products</h1>
+<h4>Click on the Product For More Info</h4>
 
     <div class="row" style="margin-top:10px;">
       <div class="small-12">
@@ -81,7 +144,8 @@ if(session_id() == '' || !isset($_SESSION)){session_start();}
             
             echo '<div class="large-4 columns">';
             echo '<p><h3>'.$obj->product_name.'</h3></p>';
-            echo '<img width="250" height="300" src="images/products/'.$obj->product_img_name.'"/>';
+            $a="'info.php?info=".$obj->product_name."'";
+            echo '<img width="250" height="300" onclick="location.href ='.$a.'" src="images/products/'.$obj->product_img_name.'"/>';
             echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
             echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
             echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';

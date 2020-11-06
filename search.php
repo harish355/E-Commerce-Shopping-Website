@@ -47,9 +47,43 @@ include 'config.php';
       </section>
     </nav>
 
+<?php
+if(isset($_GET["search"]))
+{
+  ?>
+  <div class="row" style="margin-top:10px;">
+      <div class="small-12">
+      <?php
+      $i=0;
+     $search = $_GET["search"];
+     $result=$mysqli->query("select * from products where product_name LIKE '%$search%'"); //$mysqli->query(
+     if($result){
+      while($obj = $result->fetch_object()) {
+        echo '<div class="large-4 columns">';
+        echo '<p><h3>'.$obj->product_name.'</h3></p>';
+        $a="'info.php?info=".$obj->product_name."'";
+        echo '<img width="250" height="300" onclick="location.href ='.$a.'" src="images/products/'.$obj->product_img_name.'"/>';
+        echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
+        echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
+        echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';
+        echo '<p><strong>Price (Per Unit)</strong>: '.$currency.$obj->price.'</p>';
+        if($obj->qty > 0){
+          echo '<p><a href="update-cart.php?action=add&id='.$obj->id.'"><input type="submit" value="Add To Cart" style="clear:both; background: #0078A0; border: none; color: #fff; font-size: 1em; padding: 10px;" /></a></p>';
+        }
+        else {
+          echo 'Out Of Stock!';
+        }
+        echo '</div>';
 
-
-
+        $i++;
+      }
+    }
+    echo '</div>';
+    echo '</div>';
+  }
+  else
+  {
+?>
     <div class="row" style="margin-top:10px;">
       <div class="small-12">
         <?php
@@ -68,8 +102,7 @@ include 'config.php';
 
               echo '<div class="large-4 columns">';
               echo '<p><h3>'.$obj->product_name.'</h3></p>';
-              $a="'info.php?info=".$obj->product_name."'";
-              echo '<img width="250" height="300" onclick="location.href ='.$a.'" src="images/products/'.$obj->product_img_name.'"/>';
+              echo '<img width="250" height="300" src="images/products/'.$obj->product_img_name.'"/>';
               echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
               echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
               echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';
@@ -109,7 +142,9 @@ include 'config.php';
 
       </div>
     </div>
-
+<?php
+  }
+?>
 
 
 
